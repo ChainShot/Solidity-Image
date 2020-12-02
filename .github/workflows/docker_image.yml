@@ -1,0 +1,35 @@
+name: Publish Docker image
+
+on:
+  push:
+    branches: master
+
+jobs:
+  push_to_registry:
+    # Remove this after setting up personal access token
+    if: false
+    name: Push Docker image
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Check out the repo
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          # https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token
+          password: ${{ secrets.CR_PAT }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          # We can make this dynamic too, by extracting solidity version from the config.
+          tags: |
+            ghcr.io/chainshot/solidity:0.7.5
