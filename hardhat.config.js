@@ -11,6 +11,6 @@ module.exports = {
     }
   },
   mocha: {
-    // reporter: require("./mocha-reporter"),
+    reporter: require("@codewars/mocha-reporter"),
   }
 };
