@@ -6,8 +6,6 @@ on:
 
 jobs:
   push_to_registry:
-    # Remove this after setting up personal access token
-    if: false
     name: Push Docker image
     runs-on: ubuntu-latest
     steps:
