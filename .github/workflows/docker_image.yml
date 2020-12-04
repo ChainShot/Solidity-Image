@@ -6,6 +6,7 @@ on:
 
 jobs:
   push_to_registry:
+    if: ${{ github.repository == 'ChainShot/Solidity-Image' }}
     name: Push Docker image
     runs-on: ubuntu-latest
     steps:
