@@ -1,12 +1,16 @@
 const { assert } = require("chai");
 
-describe("Simple", function() {
-  it("should get the variable `a`", async function() {
-    const Simple = await ethers.getContractFactory("Simple");
-    simple = await Simple.deploy();
-    await simple.deployed();
+const contracts = ['Simple6', 'Simple7', 'Simple8'];
 
-    const a = await simple.a();
-    assert.equal(a, 5);
+contracts.forEach((name) => {
+  describe(name, () => {
+    it("should get the variable `a`", async function() {
+      const Contract = await ethers.getContractFactory(name);
+      contract = await Contract.deploy();
+      await contract.deployed();
+
+      const a = await contract.a();
+      assert.equal(a, 5);
+    });
   });
 });
