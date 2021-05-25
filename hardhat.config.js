@@ -7,7 +7,7 @@ const settings = {
   }
 }
 
-const versions = ["0.6.12", "0.7.6", "0.8.4"];
+const versions = ["0.6.12", "0.7.5", "0.8.4"];
 
 module.exports = {
   solidity: {
