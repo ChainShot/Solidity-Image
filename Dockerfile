@@ -1,7 +1,7 @@
-FROM node:12-alpine
+FROM node:12-buster-slim
 
 RUN set -ex; \
-    adduser -D -u 9999 codewarrior; \
+    useradd -m codewarrior; \
     mkdir /workspace; \
     chown codewarrior:codewarrior /workspace;
 
@@ -10,18 +10,12 @@ COPY --chown=codewarrior:codewarrior package.json /workspace/package.json
 COPY --chown=codewarrior:codewarrior package-lock.json /workspace/package-lock.json
 
 RUN set -ex; \
-    apk add --no-cache --virtual .build-deps \
-# su-exec makes running commands as a different user easy
-        su-exec \
-        bash \
-        build-base \
-        git \
-        python \
-    ; \
+   build_deps='ca-certificates git'; \
+   apt-get update; \
+   apt-get install -y --no-install-recommends $build_deps; \
     cd /workspace; \
-    su-exec codewarrior npm install; \
-    apk del --purge .build-deps; \
-    rm -rf /var/cache/apk/* /tmp/* /home/codewarrior/.npm;
+    su -c "npm install" codewarrior; \
+    rm -rf /var/lib/apt/lists/* /tmp/* /home/codewarrior/.npm;
 
 USER codewarrior
 COPY --chown=codewarrior:codewarrior . /workspace
