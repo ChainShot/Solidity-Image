@@ -1,5 +1,5 @@
 {
-  "name": "hardhat-example",
+  "name": "solidity-image",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@aave/protocol-v2": "^1.0.1",
+    "@chainlink/contracts": "^0.2.1",
     "@codewars/mocha-reporter": "^1.0.0",
     "@nomiclabs/hardhat-ethers": "^2.0.1",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
+    "@openzeppelin/contracts": "^4.2.0",
+    "@uniswap/v2-core": "^1.0.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "@uniswap/v3-core": "^1.0.0",
+    "@uniswap/v3-periphery": "^1.1.1",
     "chai": "^4.2.0",
     "ethereum-waffle": "^3.2.1",
     "ethers": "^5.0.23",
